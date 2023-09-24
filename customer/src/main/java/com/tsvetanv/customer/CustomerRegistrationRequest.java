@@ -1,4 +1,7 @@
 package com.tsvetanv.customer;
 
-public class CustomerRegistrationRequest {
+public record CustomerRegistrationRequest(
+    String firstName,
+    String lastName,
+    String email) {
 }
