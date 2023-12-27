@@ -12,6 +12,7 @@
   <name>learn-microservices</name>
   <modules>
     <module>customer</module>
+    <module>fraud</module>
   </modules>
 
   <properties>
