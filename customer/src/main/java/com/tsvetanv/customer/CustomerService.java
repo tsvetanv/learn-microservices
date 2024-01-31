@@ -4,7 +4,6 @@ import com.tsvetanv.clients.fraud.FraudCheckResponse;
 import com.tsvetanv.clients.fraud.FraudClient;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 @Service
 @AllArgsConstructor
@@ -20,9 +19,7 @@ public class CustomerService{
                 .lastName(request.lastName())
                 .email(request.email())
                 .build();
-        // todo: validation
         customerRepository.saveAndFlush(customer);
-        // todo: check if fraudster
         FraudCheckResponse fraudCheckResponse = fraudClient.isFraudster(customer.getId());
         if(fraudCheckResponse.isFraudster()){
             throw new IllegalStateException("fraudster");
