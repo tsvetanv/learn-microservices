@@ -2,6 +2,8 @@ package com.tsvetanv.customer;
 
 import com.tsvetanv.clients.fraud.FraudCheckResponse;
 import com.tsvetanv.clients.fraud.FraudClient;
+import com.tsvetanv.clients.notification.NotificationClient;
+import com.tsvetanv.clients.notification.NotificationRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +14,8 @@ public class CustomerService{
     private final CustomerRepository customerRepository;
 
     private final FraudClient fraudClient;
+
+    private final NotificationClient notificationClient;
 
     public void registerCustomer(CustomerRegistrationRequest request) {
         Customer customer = Customer.builder()
@@ -24,6 +28,7 @@ public class CustomerService{
         if(fraudCheckResponse.isFraudster()){
             throw new IllegalStateException("fraudster");
         }
-        // todo: send notification
+        // send notification
+        notificationClient.createNotification(new NotificationRequest("Registered customer: " + customer.toString()));
     }
 }

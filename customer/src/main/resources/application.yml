@@ -21,4 +21,7 @@ eureka:
       default-zone: http://localhost:8761/eureka/
     fetch-registry: true
     register-with-eureka: true
+feign:
+  circuitbreaker:
+    enabled: true
 
