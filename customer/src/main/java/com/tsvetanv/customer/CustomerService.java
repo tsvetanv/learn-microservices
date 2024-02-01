@@ -29,6 +29,12 @@ public class CustomerService{
             throw new IllegalStateException("fraudster");
         }
         // send notification
-        notificationClient.createNotification(new NotificationRequest("Registered customer: " + customer.toString()));
+        // todo: make it async
+        notificationClient.createNotification(
+                new NotificationRequest(
+                        customer.getId(),
+                        customer.getEmail(),
+                        String.format("Hi %s, welcome to ceco tech", customer.getFirstName())
+                ));
     }
 }

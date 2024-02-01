@@ -1,27 +1,17 @@
 package com.tsvetanv.clients.notification;
 
-public class NotificationResponse {
-    private Integer id;
+import java.time.LocalDateTime;
 
-    private String message;
+public record NotificationResponse(
+        Integer notificationId,
 
-    public NotificationResponse() {
-    }
+        Integer toCustomerId,
 
-    public NotificationResponse(Integer id, String message) {
-        this.id = id;
-        this.message = message;
-    }
+        String toCustomerEmail,
 
-    public Integer getId() {
-        return id;
-    }
+        String sender,
 
-    public String getMessage() {
-        return message;
-    }
+        String message,
 
-    public void setMessage(String message) {
-        this.message = message;
-    }
+        LocalDateTime sentAt) {
 }

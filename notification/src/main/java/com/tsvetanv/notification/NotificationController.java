@@ -22,7 +22,7 @@ public class NotificationController {
     }
 
     @PostMapping
-    public void createNotification(@RequestBody NotificationRequest notificationRequest){
+    public void sendNotification(@RequestBody NotificationRequest notificationRequest){
         log.info("Created notification {}",  notificationRequest);
         notificationService.createNotification(notificationRequest);
     }

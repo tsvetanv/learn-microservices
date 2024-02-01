@@ -1,9 +1,6 @@
 package com.tsvetanv.notification;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -13,6 +10,7 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class Notification {
 
     @Id
@@ -24,10 +22,16 @@ public class Notification {
             strategy = GenerationType.SEQUENCE,
             generator = "notification_id_sequence"
     )
-    private Integer id;
+    private Integer notificationId;
 
-    private LocalDateTime createdAt;
+    private Integer toCustomerId;
+
+    private String toCustomerEmail;
+
+    private String sender;
 
     private String message;
+
+    private LocalDateTime sentAt;
 
 }
