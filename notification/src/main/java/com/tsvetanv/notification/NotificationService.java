@@ -1,5 +1,7 @@
 package com.tsvetanv.notification;
 
+import com.tsvetanv.clients.notification.NotificationRequest;
+import com.tsvetanv.clients.notification.NotificationResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

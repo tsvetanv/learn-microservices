@@ -1,6 +1,7 @@
 package com.tsvetanv.notification;
 
-import com.tsvetanv.clients.fraud.FraudCheckResponse;
+import com.tsvetanv.clients.notification.NotificationRequest;
+import com.tsvetanv.clients.notification.NotificationResponse;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +23,7 @@ public class NotificationController {
 
     @PostMapping
     public void createNotification(@RequestBody NotificationRequest notificationRequest){
-        log.info("created notification {}",  notificationRequest);
+        log.info("Created notification {}",  notificationRequest);
         notificationService.createNotification(notificationRequest);
     }
 }

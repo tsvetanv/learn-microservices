@@ -1,4 +1,4 @@
-package com.tsvetanv.notification;
+package com.tsvetanv.clients.notification;
 
 public class NotificationResponse {
     private Integer id;
