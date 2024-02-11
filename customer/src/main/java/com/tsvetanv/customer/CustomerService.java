@@ -1,8 +1,8 @@
 package com.tsvetanv.customer;
 
+import com.tsvetanv.amqp.RabbitMQMessageProducer;
 import com.tsvetanv.clients.fraud.FraudCheckResponse;
 import com.tsvetanv.clients.fraud.FraudClient;
-import com.tsvetanv.clients.notification.NotificationClient;
 import com.tsvetanv.clients.notification.NotificationRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,7 @@ public class CustomerService{
 
     private final FraudClient fraudClient;
 
-    private final NotificationClient notificationClient;
+    private final RabbitMQMessageProducer rabbitMQMessageProducer;
 
     public void registerCustomer(CustomerRegistrationRequest request) {
         Customer customer = Customer.builder()
@@ -29,12 +29,15 @@ public class CustomerService{
             throw new IllegalStateException("fraudster");
         }
         // send notification
-        // todo: make it async
-        notificationClient.createNotification(
-                new NotificationRequest(
-                        customer.getId(),
-                        customer.getEmail(),
-                        String.format("Hi %s, welcome to ceco tech", customer.getFirstName())
-                ));
+        NotificationRequest notificationRequest = new NotificationRequest(
+                customer.getId(),
+                customer.getEmail(),
+                String.format("Hi %s, welcome to ceco tech", customer.getFirstName())
+        );
+        rabbitMQMessageProducer.publish(
+                notificationRequest,
+                "internal.exchange",
+                "internal.notification.routing-key"
+        );
     }
 }
