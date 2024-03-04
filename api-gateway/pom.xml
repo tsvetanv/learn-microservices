@@ -7,15 +7,10 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>api-gateway</artifactId>
-    <name>API Gateway Microservice</name>
     <modelVersion>4.0.0</modelVersion>
+    <artifactId>api-gateway</artifactId>
     <packaging>jar</packaging>
-
-    <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
-    </properties>
+    <name>API Gateway Microservice</name>
 
     <dependencies>
         <dependency>
@@ -36,4 +31,12 @@
         </dependency>
     </dependencies>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 </project>
